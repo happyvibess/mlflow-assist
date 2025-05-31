@@ -1,6 +1,6 @@
 # MLFlow-Assist: Enterprise ML/LLM Development Suite 🚀
 
-[![Python Versions](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue)](https://github.com/your-username/mlflow-assist)
+[![Python Versions](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue)](https://github.com/happyvibess/mlflow-assist)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-happyvibess-orange)](https://www.buymeacoffee.com/happyvibess)
@@ -82,10 +82,10 @@ deployer.deploy(model, deployment_type="kubernetes")
 
 ```bash
 # From GitHub
-pip install git+https://github.com/your-username/mlflow-assist.git
+pip install git+https://github.com/happyvibess/mlflow-assist.git
 
 # For development
-git clone https://github.com/your-username/mlflow-assist.git
+git clone https://github.com/happyvibess/mlflow-assist.git
 cd mlflow-assist
 pip install -e ".[dev]"
 ```
@@ -101,8 +101,8 @@ pip install -e ".[dev]"
 
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Report Issues](https://github.com/your-username/mlflow-assist/issues)
-- [Discussion Forum](https://github.com/your-username/mlflow-assist/discussions)
+- [Report Issues](https://github.com/happyvibess/mlflow-assist/issues)
+- [Discussion Forum](https://github.com/happyvibess/mlflow-assist/discussions)
 
 If you find this project helpful, consider [buying me a coffee](https://www.buymeacoffee.com/happyvibess)!
 
