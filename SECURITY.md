@@ -8,15 +8,8 @@
 
 ## Reporting a Vulnerability
 
-We take the security of MLFlow-Assist seriously. If you believe you have found a security vulnerability, please report it to us as described below.
+We take the security of MLFlow-Assist seriously. If you believe you have found a security vulnerability, please report it to us.
 
-**Please do not report security vulnerabilities through public GitHub issues.**
-
-Instead, please report them via email to `security@mlflow-assist.dev` (replace with your preferred contact method).
-
-You should receive a response within 48 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
-
-Please include the requested information listed below (as much as you can provide) to help us better understand the nature and scope of the possible issue:
 
 * Type of issue (e.g. buffer overflow, SQL injection, cross-site scripting, etc.)
 * Full paths of source file(s) related to the manifestation of the issue
