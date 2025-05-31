@@ -12,6 +12,43 @@ authors = [
     {name = "MLFlow-Assist Team", email = "support@mlflow-assist.dev"}
 ]
 requires-python = ">=3.8"
+keywords = [
+    "machine-learning",
+    "deep-learning",
+    "llm",
+    "mlops",
+    "automl",
+    "gpt",
+    "model-optimization",
+    "mlflow",
+    "enterprise-ai",
+    "ai-automation",
+    "model-monitoring",
+    "deployment",
+    "pytorch",
+    "tensorflow",
+    "prompt-engineering"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Information Technology",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: System :: Monitoring",
+    "Framework :: MLflow",
+    "Framework :: Pytest",
+    "Environment :: Console",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
+]
 
 [tool.black]
 line-length = 88
@@ -34,30 +71,3 @@ disallow_incomplete_defs = true
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "-v -s --cov=mlflow_assist --cov-report=term-missing"
-
-[build-system]
-requires = ["setuptools>=45", "wheel", "pip>=21.0"]
-build-backend = "setuptools.build_meta"
-
-[tool.black]
-line-length = 88
-target-version = ["py38", "py39", "py310"]
-include = '\.pyi?$'
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-line_length = 88
-
-[tool.mypy]
-python_version = "3.8"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_*.py"]
-addopts = "-v -s --cov=mlflow_assist"
-

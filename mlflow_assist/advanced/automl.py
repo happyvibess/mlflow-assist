@@ -1,3 +1,172 @@
+"""AutoML implementation for automated model selection and optimization"""
+
+import logging
+from dataclasses import dataclass
+from typing import Any, Dict, Optional, Tuple
+
+import numpy as np
+import optuna
+import torch
+import torch.nn as nn
+from sklearn.model_selection import train_test_split
+from torch.utils.data import DataLoader, TensorDataset
+
+logger = logging.getLogger(__name__)
+
+@dataclass
+class AutoMLConfig:
+    """Configuration for AutoML"""
+    task_type: str
+    max_trials: int = 100
+    metric: str = "accuracy"
+    validation_split: float = 0.2
+    device: str = "cuda" if torch.cuda.is_available() else "cpu"
+
+class SimpleNet(nn.Module):
+    """Simple neural network with configurable architecture"""
+    
+    def __init__(self, input_dim: int, hidden_dim: int, output_dim: int):
+        super().__init__()
+        self.network = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(hidden_dim, output_dim)
+        )
+        
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.network(x)
+
+class AutoML:
+    """AutoML with automated model selection and hyperparameter optimization"""
+    
+    def __init__(self, config: AutoMLConfig):
+        self.config = config
+        self.best_model = None
+        self.best_score = float('-inf')
+        
+    def optimize(
+        self,
+        X: np.ndarray,
+        y: np.ndarray,
+        X_val: Optional[np.ndarray] = None,
+        y_val: Optional[np.ndarray] = None
+    ) -> nn.Module:
+        """Find the best model for the given data"""
+        
+        # Prepare data
+        if X_val is None or y_val is None:
+            X_train, X_val, y_train, y_val = train_test_split(
+                X, y,
+                test_size=self.config.validation_split,
+                stratify=y if self.config.task_type == "classification" else None
+            )
+        else:
+            X_train, y_train = X, y
+            
+        input_dim = X_train.shape[1]
+        output_dim = len(np.unique(y)) if self.config.task_type == "classification" else 1
+        
+        # Create study
+        study = optuna.create_study(direction="maximize")
+        
+        def objective(trial: optuna.Trial) -> float:
+            # Sample hyperparameters
+            hidden_dim = trial.suggest_int("hidden_dim", 32, 256)
+            lr = trial.suggest_float("lr", 1e-4, 1e-2, log=True)
+            batch_size = trial.suggest_int("batch_size", 16, 128)
+            
+            # Create and train model
+            model = SimpleNet(input_dim, hidden_dim, output_dim).to(self.config.device)
+            score = self._train_model(
+                model,
+                X_train,
+                y_train,
+                X_val,
+                y_val,
+                lr=lr,
+                batch_size=batch_size
+            )
+            
+            if score > self.best_score:
+                self.best_score = score
+                self.best_model = model
+                
+            return score
+            
+        # Optimize
+        try:
+            study.optimize(objective, n_trials=self.config.max_trials)
+        except Exception as e:
+            logger.error(f"Optimization failed: {str(e)}")
+            raise
+            
+        return self.best_model
+        
+    def _train_model(
+        self,
+        model: nn.Module,
+        X_train: np.ndarray,
+        y_train: np.ndarray,
+        X_val: np.ndarray,
+        y_val: np.ndarray,
+        lr: float = 1e-3,
+        batch_size: int = 32,
+        max_epochs: int = 100,
+        patience: int = 5
+    ) -> float:
+        """Train a single model and return validation score"""
+        
+        # Convert data to tensors
+        X_train_tensor = torch.FloatTensor(X_train).to(self.config.device)
+        y_train_tensor = torch.LongTensor(y_train).to(self.config.device)
+        X_val_tensor = torch.FloatTensor(X_val).to(self.config.device)
+        y_val_tensor = torch.LongTensor(y_val).to(self.config.device)
+        
+        # Create data loaders
+        train_dataset = TensorDataset(X_train_tensor, y_train_tensor)
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+        
+        # Training setup
+        criterion = (
+            nn.CrossEntropyLoss() if self.config.task_type == "classification"
+            else nn.MSELoss()
+        )
+        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+        
+        # Training loop
+        best_val_score = float('-inf')
+        patience_counter = 0
+        
+        for epoch in range(max_epochs):
+            model.train()
+            for batch_X, batch_y in train_loader:
+                optimizer.zero_grad()
+                outputs = model(batch_X)
+                loss = criterion(outputs, batch_y)
+                loss.backward()
+                optimizer.step()
+                
+            # Validation
+            model.eval()
+            with torch.no_grad():
+                val_outputs = model(X_val_tensor)
+                if self.config.task_type == "classification":
+                    val_preds = torch.argmax(val_outputs, dim=1)
+                    val_score = (val_preds == y_val_tensor).float().mean().item()
+                else:
+                    val_score = -criterion(val_outputs, y_val_tensor).item()
+                    
+            if val_score > best_val_score:
+                best_val_score = val_score
+                patience_counter = 0
+            else:
+                patience_counter += 1
+                if patience_counter >= patience:
+                    break
+                    
+        return best_val_score
+
 """
 AutoML capabilities with hyperparameter optimization and architecture search.
 """

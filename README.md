@@ -1,5 +1,7 @@
 # MLFlow-Assist: Enterprise ML/LLM Development Suite 🚀
 
+[![PyPI version](https://badge.fury.io/py/mlflow-assist.svg)](https://pypi.org/project/mlflow-assist/)
+[![PyPI Downloads](https://pepy.tech/badge/mlflow-assist)](https://pepy.tech/project/mlflow-assist)
 [![Python Versions](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue)](https://github.com/happyvibess/mlflow-assist)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -27,9 +29,19 @@ A comprehensive enterprise-ready toolkit that supercharges your ML and LLM devel
 - 🔄 Automated deployment (K8s/Docker)
 - 📈 Model drift detection & alerts
 
-## 💻 Quick Start
+## 🚀 Installation
 
-### AutoML Example
+```bash
+# From PyPI (recommended)
+pip install mlflow-assist
+
+# Latest development version from GitHub
+pip install git+https://github.com/happyvibess/mlflow-assist.git
+```
+
+## 🌟 Quick Start in 5 Minutes
+
+### 1. Simple Classification
 ```python
 from mlflow_assist.advanced.automl import AutoML, AutoMLConfig
 
@@ -43,7 +55,7 @@ optimizer = ModelOptimizer(compression_method="quantization")
 optimized_model = optimizer.optimize(model)
 ```
 
-### LLM Chain Example
+### 2. Text Generation with LLMs
 ```python
 from mlflow_assist.advanced.llm_chains import LLMChain
 
@@ -60,7 +72,7 @@ pipeline = chain.create_chain([
 ])
 ```
 
-### Enterprise Features Example
+### 3. Production Features
 ```python
 # Usage tracking and monetization
 from mlflow_assist.enterprise.monetization import EnterpriseManager
@@ -78,16 +90,18 @@ deployer = DeploymentManager()
 deployer.deploy(model, deployment_type="kubernetes")
 ```
 
-## 🚀 Installation
+## 👩‍💻 Development Setup
 
 ```bash
-# From GitHub
-pip install git+https://github.com/happyvibess/mlflow-assist.git
-
-# For development
+# Clone the repository
 git clone https://github.com/happyvibess/mlflow-assist.git
 cd mlflow-assist
+
+# Install in development mode with all extras
 pip install -e ".[dev]"
+
+# Run tests
+pytest
 ```
 
 ## 📚 Documentation & Resources
