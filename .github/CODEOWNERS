@@ -1,0 +1,17 @@
+# Global code owners
+* @happyvibess
+
+# Documentation
+/docs/ @happyvibess
+
+# Core functionality
+/mlflow_assist/core/ @happyvibess
+/mlflow_assist/llm/ @happyvibess
+/mlflow_assist/advanced/ @happyvibess
+
+# Enterprise features
+/mlflow_assist/enterprise/ @happyvibess
+
+# Tests
+/tests/ @happyvibess
+

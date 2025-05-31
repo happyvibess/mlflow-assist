@@ -3,7 +3,8 @@ name: Feature request
 about: Suggest an idea for this project
 title: '[FEATURE] '
 labels: enhancement
-assignees: ''
+assignees: 'happyvibess'
+
 ---
 
 **Is your feature request related to a problem? Please describe.**
@@ -18,3 +19,5 @@ A clear and concise description of any alternative solutions or features you've 
 **Additional context**
 Add any other context or screenshots about the feature request here.
 
+**Would you be willing to contribute this feature?**
+Let us know if you'd like to help implement this feature.

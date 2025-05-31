@@ -12,9 +12,9 @@ updates:
       prefix: "deps"
       include: "scope"
     reviewers:
-      - "project-maintainers"
+      - "happyvibess"
     assignees:
-      - "project-maintainers"
+      - "happyvibess"
     versioning-strategy: "auto"
 
   - package-ecosystem: "github-actions"
@@ -28,4 +28,3 @@ updates:
     commit-message:
       prefix: "ci"
       include: "scope"
-

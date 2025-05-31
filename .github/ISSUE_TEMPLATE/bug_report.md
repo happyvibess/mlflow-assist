@@ -3,7 +3,8 @@ name: Bug report
 about: Create a report to help us improve
 title: '[BUG] '
 labels: bug
-assignees: ''
+assignees: 'happyvibess'
+
 ---
 
 **Describe the bug**
@@ -19,14 +20,15 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Error Message**
-If applicable, add the full error message or traceback.
-
 **Environment:**
- - OS: [e.g. Ubuntu 20.04]
+ - OS: [e.g. macOS]
  - Python Version: [e.g. 3.8.10]
  - Package Version: [e.g. 0.1.0]
 
+**Error Message**
+```
+Paste your error message here
+```
+
 **Additional context**
 Add any other context about the problem here.
-
