@@ -93,16 +93,11 @@ pip install -e ".[dev]"
 ## 📚 Documentation & Resources
 
 - [Getting Started Guide](docs/getting-started.md)
-- [API Reference](docs/api.md)
-- [Enterprise Guide](docs/enterprise.md)
 - [Example Notebooks](examples/notebooks/)
 
 ## 🤝 Community & Support
 
-- [Contributing Guidelines](CONTRIBUTING.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
 - [Report Issues](https://github.com/happyvibess/mlflow-assist/issues)
-- [Discussion Forum](https://github.com/happyvibess/mlflow-assist/discussions)
 
 If you find this project helpful, consider [buying me a coffee](https://www.buymeacoffee.com/happyvibess)!
 

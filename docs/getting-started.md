@@ -116,7 +116,6 @@ results = pipeline.execute({
 ## Need Help? 🆘
 
 - Check our [example notebooks](../examples/notebooks/)
-- Join our [discussions](https://github.com/happyvibess/mlflow-assist/discussions)
 - Report issues on [GitHub](https://github.com/happyvibess/mlflow-assist/issues)
 
 ## Next Steps 🎓
@@ -130,4 +129,3 @@ Once you're comfortable with the basics:
 Remember: You don't need to be an expert to start using MLFlow-Assist. The package handles the complex parts, letting you focus on solving your problems!
 
 [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-happyvibess-orange)](https://www.buymeacoffee.com/happyvibess)
-
